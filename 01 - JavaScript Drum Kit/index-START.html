@@ -59,6 +59,25 @@
 
 <script>
 
+  function handleKeyPress(event) {
+    const keyCode = event.keyCode;
+
+    document.querySelectorAll(`[data-key="${keyCode}"]`).forEach(element => {
+      if (element.nodeName == "DIV") {
+        element.classList.add("playing");
+      } else {
+        element.play();
+        element.addEventListener('ended', () => {
+          document.querySelector(`div [data-key="${keyCode}"]`).classList.remove("playing");
+        });
+      }
+    })
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener('keypress', handleKeyPress)
+  });
+
 </script>
 
 
