@@ -96,6 +96,24 @@
   </div>
 
 <script>
+  function handleKeyPress(e) {
+    if (e.key === 'Shift' && this.checked) {
+      let select = false;
+      document.querySelectorAll('input').forEach(checkbox => {
+        if (checkbox.checked) {
+          select = !select
+        }
+        if (select) {
+          checkbox.checked = true;
+        }
+      });
+    }
+  }
+
+  document.querySelectorAll('input').forEach(checkbox => {
+    checkbox.addEventListener('keyup', handleKeyPress)
+  });
+
 </script>
 </body>
 </html>
